@@ -20,7 +20,7 @@
     </head>
     <body class="font-sans antialiased bg-gray-100 text-gray-900 text-sm">
         <header class="flex items-center justify-between px-8 py-4">
-            <a href="#" class="flex items-center">
+            <a href="{{ route('/') }}" class="flex items-center">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" class="w-16">
                 <span class="text-3xl font-semibold ml-3 text-teal-600 font-lobster">VotingApp</span>
             </a>

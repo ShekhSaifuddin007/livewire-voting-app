@@ -20,13 +20,18 @@ module.exports = {
                 gray: colors.trueGray,
                 teal: colors.teal
             },
-
             fontFamily: {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
                 lobster: ['Lobster', ...defaultTheme.fontFamily.sans],
             },
             fontSize: {
                 xxs: ['0.625rem', { lineHeight: '1rem' }]
+            },
+            minHeight: {
+                13: '3.125rem',
+            },
+            spacing: {
+                22: '5.5rem'
             }
         },
     },
