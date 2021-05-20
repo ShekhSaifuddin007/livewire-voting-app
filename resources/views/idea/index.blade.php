@@ -67,11 +67,23 @@
                             <div>&bull;</div>
                             <div class="text-gray-900">3 Comments</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div
+                            x-data="{ isOpen: false }"
+                            class="flex items-center space-x-2"
+                        >
                             <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>
-                            <button class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 border focus:outline-none transition duration-150 ease-in py-2 px-3">
+                            <button
+                                @click.prevent="isOpen = ! isOpen"
+                                class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 border focus:outline-none transition duration-150 ease-in py-2 px-3"
+                            >
                                 <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                                <ul class="absolute right-0 top-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3">
+                                <ul 
+                                    x-cloak
+                                    x-show.transition.origin.top.left="isOpen" 
+                                    @click.away="isOpen = false" 
+                                    @keydown.escape.window="isOpen = false" 
+                                    class="absolute right-0 top-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3"                                     
+                                >
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
                                 </ul>
@@ -121,11 +133,17 @@
                             <div>&bull;</div>
                             <div class="text-gray-900">3 Comments</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
                             <div class="bg-yellow-500 text-white text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">In Progress</div>
-                            <button class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
+                            <button @click.prevent="isOpen = ! isOpen" class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
                                 <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                                <ul class="hidden absolute right-0 top-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3">
+                                <ul 
+                                    x-cloak
+                                    x-show.transition.origin.top.left="isOpen" 
+                                    @click.away="isOpen = false" 
+                                    @keydown.escape.window="isOpen = false" 
+                                    class="absolute right-0 top-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3"
+                                >
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
                                 </ul>
@@ -175,11 +193,17 @@
                             <div>&bull;</div>
                             <div class="text-gray-900">3 Comments</div>
                         </div>
-                        <div class="flex items-center space-x-2">
+                        <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
                             <div class="bg-purple-500 text-white text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Considering</div>
-                            <button class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
+                            <button @click.prevent="isOpen = ! isOpen" class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
                                 <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                                <ul class="absolute right-0 bottom-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3">
+                                <ul 
+                                    x-cloak
+                                    x-show.transition.origin.top.left="isOpen" 
+                                    @click.away="isOpen = false" 
+                                    @keydown.escape.window="isOpen = false" 
+                                    class="absolute right-0 bottom-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3"
+                                >
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
                                 </ul>
