@@ -9,14 +9,15 @@
     </div>
 
     <div class="idea-container shadow-md bg-white rounded-xl flex mt-4">
-        <div class="flex flex-1 px-4 py-6">
-            <div class="flex-none">
+        <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
+            <div class="flex-none mx-2 md:mx-0">
                 <a href="#">
                     <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
                 </a>
             </div>
-            <div class="w-full mx-4">
-                <h4 class="text-xl font-semibold">
+
+            <div class="flex flex-col justify-between mx-2 md:mx-4">
+                <h4 class="text-lg md:text-xl font-semibold">
                     <a href="#" class="hover:underline">A random title can go here</a>
                 </h4>
                 <div class="text-gray-600 mt-3">
@@ -25,17 +26,18 @@
                     culpa.
                 </div>
 
-                <div class="flex items-center justify-between mt-6">
-                    <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                        <div class="font-bold text-gray-900">John Doe</div>
-                        <div>&bull;</div>
+                <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
+                    <div class="flex items-center text-xs text-gray-400 font-semibold space-x-1 md:space-x-2">
+                        <div class="hidden md:block font-bold text-gray-900">John Doe</div>
+                        <div class="hidden md:block">&bull;</div>
                         <div>10 hours ago</div>
                         <div>&bull;</div>
                         <div>Category 1</div>
                         <div>&bull;</div>
                         <div class="text-gray-900">3 Comments</div>
                     </div>
-                    <div x-data="{ isOpen: false }" class="flex items-center space-x-2">
+
+                    <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-3 md:mt-0">
                         <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>
                         <button @click.prevent="isOpen = ! isOpen" class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
                             <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
@@ -44,11 +46,23 @@
                                 x-show.transition.origin.top.left="isOpen" 
                                 @click.away="isOpen = false" 
                                 @keydown.escape.window="isOpen = false" 
-                                class="absolute right-0 top-8 shadow-lg w-44 text-left font-semibold bg-white shadow-lg rounded-xl py-3"
+                                class="absolute right-0 top-8 shadow-lg w-44 z-10 text-left font-semibold bg-white shadow-lg rounded-xl py-3"
                             >
                                 <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
                                 <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
                             </ul>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center md:hidden mt-4 md:mt-0">
+                        <div class="bg-gray-100 text-center rounded-bl-full rounded-tl-full h-10 px-4 py-2 pr-8">
+                            <div class="text-sm font-bold leading-none">12</div>
+                            <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
+                        </div>
+                        <button
+                            class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-full focus:outline-none hover:border-teal-500 transition duration-150 ease-in px-4 py-3 -mx-5"
+                        >
+                            Vote
                         </button>
                     </div>
                 </div>
@@ -57,12 +71,12 @@
     </div> <!-- end idea-container -->
 
     <div class="buttons-container flex items-center justify-between mt-6">
-        <div class="flex items-center space-x-4 ml-6">
+        <div class="flex items-center space-x-6 md:space-x-4 ml-0 md:ml-6">
             <div x-data="{ isOpen: false }" class="relative">
                 <button
                     @click.prevent="isOpen = ! isOpen"
                     type="button"
-                    class="flex items-center justify-center h-11 w-32 text-sm bg-teal-500 text-white focus:outline-none font-semibold rounded-xl border border-blue hover:bbg-teal-600 transition duration-150 ease-in px-6 py-3"
+                    class="flex items-center justify-center h-11 w-32 text-xs md:text-sm bg-teal-500 text-white focus:outline-none font-semibold rounded-xl border border-blue hover:bbg-teal-600 transition duration-150 ease-in px-6 py-3"
                 >
                     Reply
                 </button>
@@ -72,7 +86,7 @@
                     x-show.transition.origin.top.left="isOpen" 
                     @click.away="isOpen = false" 
                     @keydown.escape.window="isOpen = false" 
-                    class="absolute z-10 w-104 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2"
+                    class="absolute z-10 w-72 md:w-104 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2"
                 >
                     <form action="#" class="space-y-4 px-4 py-6">
                         <div>
@@ -84,7 +98,7 @@
                                 type="button"
                                 class="flex items-center justify-center h-11 w-1/2 text-sm bg-teal-500 text-white font-semibold focus:outline-none rounded-xl border border-blue hover:bg-teal-600 transition duration-150 ease-in px-6 py-3"
                             >
-                                Post Comment
+                                Comment
                             </button>
                             <button
                                 type="button"
@@ -105,7 +119,7 @@
                 <button
                     @click.prevent="isOpen = ! isOpen"
                     type="button"
-                    class="flex items-center justify-center w-36 h-11 text-sm focus:outline-none bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-teal-500 transition duration-150 ease-in px-6 py-3"
+                    class="flex items-center justify-center w-36 h-11 text-xs md:text-sm focus:outline-none bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-teal-500 transition duration-150 ease-in px-6 py-3"
                 >
                     <span>Set Status</span>
                     <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,7 +132,7 @@
                     x-show.transition.origin.top.left="isOpen" 
                     @click.away="isOpen = false" 
                     @keydown.escape.window="isOpen = false" 
-                    class="absolute z-20 w-76 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2"
+                    class="absolute z-20 w-72 md:w-76 right-0 md:left-0 text-left font-semibold text-sm bg-white shadow-lg rounded-xl mt-2"
                 >
                     <form action="#" class="space-y-4 px-4 py-6">
                         <div class="space-y-2">
@@ -187,7 +201,7 @@
             </div>
         </div>
 
-        <div class="flex items-center space-x-3">
+        <div class="hidden md:flex items-center space-x-3">
             <div class="bg-white font-semibold text-center rounded-xl px-3 py-2">
                 <div class="text-xl leading-snug">12</div>
                 <div class="text-gray-400 text-xs leading-none">Votes</div>
