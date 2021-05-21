@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IdeasController::class, 'index'])->name('/');
 
-Route::get('ideas/{id}', [IdeasController::class, 'show'])->name('ideas.show');
+Route::get('ideas/{idea:slug}', [IdeasController::class, 'show'])->name('ideas.show');
 
 require __DIR__.'/auth.php';

@@ -12,25 +12,23 @@
         <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
             <div class="flex-none mx-2 md:mx-0">
                 <a href="#">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v={{ $idea->id }}" alt="avatar" class="w-14 h-14 rounded-xl">
                 </a>
             </div>
 
             <div class="flex flex-col justify-between mx-2 md:mx-4">
-                <h4 class="text-lg md:text-xl font-semibold">
-                    <a href="#" class="hover:underline">A random title can go here</a>
+                <h4 class="text-lg md:text-xl mt-2 md:mt-0 font-semibold">
+                    <a href="#" class="hover:underline">{{ $idea->title }}</a>
                 </h4>
                 <div class="text-gray-600 mt-3">
-                    Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet officia doloribus quibusdam
-                    dolorem quod velit repellat obcaecati doloremque, nulla iusto modi hic. Dolore possimus consequuntur et recusandae laboriosam? Esse,
-                    culpa.
+                    {{ $idea->description }}
                 </div>
 
                 <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-1 md:space-x-2">
-                        <div class="hidden md:block font-bold text-gray-900">John Doe</div>
+                        <div class="hidden md:block font-bold text-gray-900">{{ $idea->user->name }}</div>
                         <div class="hidden md:block">&bull;</div>
-                        <div>10 hours ago</div>
+                        <div>{{ $idea->created_at->diffForHumans() }}</div>
                         <div>&bull;</div>
                         <div>Category 1</div>
                         <div>&bull;</div>

@@ -28,228 +28,85 @@
 
     <div class="ideas-container space-y-6 my-6">
 
-        <div class="idea-container hover:shadow-md transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
-            <div class="hidden md:block border-r border-gray-100 px-5 py-8">
-                <div class="text-center">
-                    <div class="font-semibold text-2xl">12</div>
-                    <div class="text-gray-500">Votes</div>
-                </div>
-
-                <div class="mt-8">
-                    <button class="w-20 bg-gray-200 border border-gray-200 focus:outline-none hover:border-teal-500 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">Vote</button>
-                </div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
-                <div class="flex-none mx-2 md:mx-0">
-                    <a href="{{ route('ideas.show', 1) }}">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
-                    </a>
-                </div>
-
-                <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
-                    <h4 class="text-lg md:text-xl font-semibold">
-                        <a href="{{ route('ideas.show', 1) }}" class="hover:underline">A random title can go here</a>
-                    </h4>
-                    <div class="text-gray-600 mt-3 line-clamp-3 min-h-13">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero consequuntur doloribus aspernatur, saepe nisi tempora! Sequi 
-                        asperiores quo ratione saepe qui ut neque minima accusamus fugiat vitae dignissimos, veritatis a omnis voluptatibus illum optio 
-                        rem laudantium earum aspernatur natus quia dolores sint error? Nostrum inventore molestiae quam autem atque aspernatur iusto 
-                        totam, dolor porro facilis dolorem dignissimos magni soluta accusamus nam animi amet aut delectus excepturi consequatur? Eos 
-                        iusto quia excepturi modi laboriosam quae nesciunt at, minima provident eaque perspiciatis numquam iste pariatur nisi 
-                        exercitationem commodi neque accusantium sit sint est mollitia sequi officiis error? Officia voluptatem repellendus possimus 
-                        aliquam.
+        @foreach ($ideas as $idea)
+            <div class="idea-container hover:shadow-md transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
+                <div class="hidden md:block border-r border-gray-100 px-5 py-8">
+                    <div class="text-center">
+                        <div class="font-semibold text-2xl">12</div>
+                        <div class="text-gray-500">Votes</div>
                     </div>
 
-                    <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
-                        <div class="flex items-center text-xs text-gray-400 font-semibold space-x-1 md:space-x-2">
-                            <div>10 hours ago</div>
-                            <div>&bull;</div>
-                            <div>Category 1</div>
-                            <div>&bull;</div>
-                            <div class="text-gray-900">3 Comments</div>
-                        </div>
-                        <div
-                            x-data="{ isOpen: false }"
-                            class="flex items-center space-x-2 mt-3 md:mt-0"
-                        >
-                            <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>
-                            <button
-                                @click.prevent="isOpen = ! isOpen"
-                                class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 border focus:outline-none transition duration-150 ease-in py-2 px-3"
-                            >
-                                <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                                <ul 
-                                    x-cloak
-                                    x-show.transition.origin.top.left="isOpen" 
-                                    @click.away="isOpen = false" 
-                                    @keydown.escape.window="isOpen = false" 
-                                    class="absolute right-0 top-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3"                                     
-                                >
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
-                                </ul>
-                            </button>
+                    <div class="mt-8">
+                        <button class="w-20 bg-gray-200 border border-gray-200 focus:outline-none hover:border-teal-500 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">Vote</button>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
+                    <div class="flex-none mx-2 md:mx-0">
+                        <a href="{{ route('ideas.show', $idea) }}">
+                            <img src="https://source.unsplash.com/200x200/?face&crop=face&v={{ $idea->id }}" alt="avatar" class="w-14 h-14 rounded-xl">
+                        </a>
+                    </div>
+
+                    <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
+                        <h4 class="text-lg md:text-xl mt-2 md:mt-0 font-semibold">
+                            <a href="{{ route('ideas.show', $idea) }}" class="hover:underline">{{ $idea->title }}</a>
+                        </h4>
+
+                        <div class="text-gray-600 mt-3 line-clamp-3 min-h-13">
+                            {{ $idea->description }}
                         </div>
 
-                        <div class="flex items-center md:hidden mt-4 md:mt-0">
-                            <div class="bg-gray-100 text-center rounded-bl-full rounded-tl-full h-10 px-4 py-2 pr-8">
-                                <div class="text-sm font-bold leading-none">12</div>
-                                <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
+                        <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
+                            <div class="flex items-center text-xs text-gray-400 font-semibold space-x-1 md:space-x-2">
+                                <div>{{ $idea->created_at->diffForHumans() }}</div>
+                                <div>&bull;</div>
+                                <div>Category 1</div>
+                                <div>&bull;</div>
+                                <div class="text-gray-900">3 Comments</div>
                             </div>
-                            <button
-                                class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-full focus:outline-none hover:border-teal-500 transition duration-150 ease-in px-4 py-3 -mx-5"
+                            <div
+                                x-data="{ isOpen: false }"
+                                class="flex items-center space-x-2 mt-3 md:mt-0"
                             >
-                                Vote
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- end idea-container -->
-
-        <div class="idea-container hover:shadow-md transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
-            <div class="hidden md:block border-r border-gray-100 px-5 py-8">
-                <div class="text-center">
-                    <div class="font-semibold text-teal-500 text-2xl">66</div>
-                    <div class="text-gray-500">Votes</div>
-                </div>
-
-                <div class="mt-8">
-                    <button class="w-20 bg-teal-500 text-white focus:outline-none hover:bg-teal-600 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
-                        Voted
-                    </button>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
-                <div class="flex-none mx-2 md:mx-0">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=2" alt="avatar" class="w-14 h-14 rounded-xl">
-                    </a>
-                </div>
-
-                <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
-                    <h4 class="text-lg md:text-xl font-semibold">
-                        <a href="#" class="hover:underline">Another random title can go here</a>
-                    </h4>
-                    <div class="text-gray-600 mt-3 line-clamp-3 min-h-13">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum possimus quasi reprehenderit earum incidunt. Ad reprehenderit
-                        repudiandae dolorem ducimus modi accusamus beatae perferendis? Eum eligendi nulla aliquam numquam! Nobis, tempore rerum autem
-                        accusamus perspiciatis laudantium at excepturi sint placeat nulla beatae qui aliquam quibusdam corrupti vel dolor praesentium
-                        quam dolore itaque deleniti quod in ut earum. Cum fuga ea molestias nesciunt soluta sint maxime, magnam dolorum reprehenderit
-                        autem, vel ipsa? Vitae vel quos quaerat, fugit in reiciendis alias perspiciatis esse numquam facere cum veniam beatae voluptatem
-                        eos amet vero laborum error. Dolor distinctio temporibus iure, repellendus porro molestiae deleniti quibusdam?
-                    </div>
-
-                    <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
-                        <div class="flex items-center text-xs text-gray-400 font-semibold space-x-1 md:space-x-2">
-                            <div>10 hours ago</div>
-                            <div>&bull;</div>
-                            <div>Category 1</div>
-                            <div>&bull;</div>
-                            <div class="text-gray-900">3 Comments</div>
-                        </div>
-                        <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-3 md:mt-0">
-                            <div class="bg-yellow-500 text-white text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">In Progress</div>
-                            <button @click.prevent="isOpen = ! isOpen" class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
-                                <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                                <ul 
-                                    x-cloak
-                                    x-show.transition.origin.top.left="isOpen" 
-                                    @click.away="isOpen = false" 
-                                    @keydown.escape.window="isOpen = false" 
-                                    class="absolute right-0 top-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3"
+                                <div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>
+                                <button
+                                    @click.prevent="isOpen = ! isOpen"
+                                    class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 border focus:outline-none transition duration-150 ease-in py-2 px-3"
                                 >
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
-                                </ul>
-                            </button>
-                        </div>
-
-                        <div class="flex items-center md:hidden mt-4 md:mt-0">
-                            <div class="bg-gray-100 text-center rounded-bl-full rounded-tl-full h-10 px-4 py-2 pr-8">
-                                <div class="text-sm font-bold leading-none text-teal-500">66</div>
-                                <div class="text-xxs font-semibold leading-none text-gray-400">Voted</div>
+                                    <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
+                                    <ul 
+                                        x-cloak
+                                        x-show.transition.origin.top.left="isOpen" 
+                                        @click.away="isOpen = false" 
+                                        @keydown.escape.window="isOpen = false" 
+                                        class="absolute right-0 {{ $loop->last ? 'bottom-8' : 'top-8' }} shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3"                                     
+                                    >
+                                        <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
+                                        <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
+                                    </ul>
+                                </button>
                             </div>
-                            <button
-                                class="w-20 bg-teal-500 font-bold text-xxs uppercase rounded-full focus:outline-none text-white bg-teal-500 hover:bg-teal-600 transition duration-150 ease-in px-4 py-3 -mx-5"
-                            >
-                                Voted
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- end idea-container -->
 
-        <div class="idea-container hover:shadow-md transition duration-150 ease-in bg-white rounded-xl flex cursor-pointer">
-            <div class="hidden md:block border-r border-gray-100 px-5 py-8">
-                <div class="text-center">
-                    <div class="font-semibold text-2xl">2</div>
-                    <div class="text-gray-500">Votes</div>
-                </div>
-
-                <div class="mt-8">
-                    <button class="w-20 bg-gray-200 border border-gray-200 focus:outline-none hover:border-teal-500 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">Vote</button>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
-                <div class="flex-none mx-2 md:mx-0">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=3" alt="avatar" class="w-14 h-14 rounded-xl">
-                    </a>
-                </div>
-
-                <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
-                    <h4 class="text-lg md:text-xl font-semibold">
-                        <a href="#" class="hover:underline">Last random title can go here</a>
-                    </h4>
-                    <div class="text-gray-600 mt-3 line-clamp-3 min-h-13">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </div>
-
-                    <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
-                        <div class="flex items-center text-xs text-gray-400 font-semibold space-x-1 md:space-x-2">
-                            <div>10 hours ago</div>
-                            <div>&bull;</div>
-                            <div>Category 1</div>
-                            <div>&bull;</div>
-                            <div class="text-gray-900">3 Comments</div>
-                        </div>
-                        <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-3 md:mt-0">
-                            <div class="bg-purple-500 text-white text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Considering</div>
-                            <button @click.prevent="isOpen = ! isOpen" class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
-                                <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                                <ul 
-                                    x-cloak
-                                    x-show.transition.origin.top.left="isOpen" 
-                                    @click.away="isOpen = false" 
-                                    @keydown.escape.window="isOpen = false" 
-                                    class="absolute right-0 bottom-8 shadow-lg w-44 text-left font-semibold bg-white rounded-xl py-3"
+                            <div class="flex items-center md:hidden mt-4 md:mt-0">
+                                <div class="bg-gray-100 text-center rounded-bl-full rounded-tl-full h-10 px-4 py-2 pr-8">
+                                    <div class="text-sm font-bold leading-none">12</div>
+                                    <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
+                                </div>
+                                <button
+                                    class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-full focus:outline-none hover:border-teal-500 transition duration-150 ease-in px-4 py-3 -mx-5"
                                 >
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
-                                </ul>
-                            </button>
-                        </div>
-
-                        <div class="flex items-center md:hidden mt-4 md:mt-0">
-                            <div class="bg-gray-100 text-center rounded-bl-full rounded-tl-full h-10 px-4 py-2 pr-8">
-                                <div class="text-sm font-bold leading-none">12</div>
-                                <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
+                                    Vote
+                                </button>
                             </div>
-                            <button
-                                class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-full focus:outline-none hover:border-teal-500 transition duration-150 ease-in px-4 py-3 -mx-5"
-                            >
-                                Vote
-                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div> <!-- end idea-container -->
-
+            </div> <!-- end idea-container -->
+        @endforeach
     </div> <!-- end ideas-container -->
+
+    <div class="mb-5">
+        {{ $ideas->links() }}
+    </div>
 </x-app-layout>
