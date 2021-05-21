@@ -47,17 +47,18 @@
                     </a>
                 </div>
 
-                <div class="flex flex-col justify-between mx-2 md:mx-4">
+                <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
                     <h4 class="text-lg md:text-xl font-semibold">
                         <a href="{{ route('ideas.show', 1) }}" class="hover:underline">A random title can go here</a>
                     </h4>
                     <div class="text-gray-600 mt-3 line-clamp-3 min-h-13">
-                        Lorem ipsum dolor sit amet ddd ss consectetur adipisicing elit. Eum possimus quasi reprehenderit earum incidunt. Ad reprehenderit
-                        repudiandae dolorem ducimus modi accusamus beatae perferendis? Eum eligendi nulla aliquam numquam! Nobis, tempore rerum autem
-                        accusamus perspiciatis laudantium at excepturi sint placeat nulla beatae qui aliquam quibusdam corrupti vel dolor praesentium
-                        quam dolore itaque deleniti quod in ut earum. Cum fuga ea molestias nesciunt soluta sint maxime, magnam dolorum reprehenderit
-                        autem, vel ipsa? Vitae vel quos quaerat, fugit in reiciendis alias perspiciatis esse numquam facere cum veniam beatae voluptatem
-                        eos amet vero laborum error. Dolor distinctio temporibus iure, repellendus porro molestiae deleniti quibusdam?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero consequuntur doloribus aspernatur, saepe nisi tempora! Sequi 
+                        asperiores quo ratione saepe qui ut neque minima accusamus fugiat vitae dignissimos, veritatis a omnis voluptatibus illum optio 
+                        rem laudantium earum aspernatur natus quia dolores sint error? Nostrum inventore molestiae quam autem atque aspernatur iusto 
+                        totam, dolor porro facilis dolorem dignissimos magni soluta accusamus nam animi amet aut delectus excepturi consequatur? Eos 
+                        iusto quia excepturi modi laboriosam quae nesciunt at, minima provident eaque perspiciatis numquam iste pariatur nisi 
+                        exercitationem commodi neque accusantium sit sint est mollitia sequi officiis error? Officia voluptatem repellendus possimus 
+                        aliquam.
                     </div>
 
                     <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
@@ -128,7 +129,7 @@
                     </a>
                 </div>
 
-                <div class="flex flex-col justify-between mx-2 md:mx-4">
+                <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
                     <h4 class="text-lg md:text-xl font-semibold">
                         <a href="#" class="hover:underline">Another random title can go here</a>
                     </h4>
@@ -201,17 +202,12 @@
                     </a>
                 </div>
 
-                <div class="flex flex-col justify-between mx-2 md:mx-4">
+                <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
                     <h4 class="text-lg md:text-xl font-semibold">
                         <a href="#" class="hover:underline">Last random title can go here</a>
                     </h4>
                     <div class="text-gray-600 mt-3 line-clamp-3 min-h-13">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum possimus quasi reprehenderit earum incidunt. Ad reprehenderit
-                        repudiandae dolorem ducimus modi accusamus beatae perferendis? Eum eligendi nulla aliquam numquam! Nobis, tempore rerum autem
-                        accusamus perspiciatis laudantium at excepturi sint placeat nulla beatae qui aliquam quibusdam corrupti vel dolor praesentium
-                        quam dolore itaque deleniti quod in ut earum. Cum fuga ea molestias nesciunt soluta sint maxime, magnam dolorum reprehenderit
-                        autem, vel ipsa? Vitae vel quos quaerat, fugit in reiciendis alias perspiciatis esse numquam facere cum veniam beatae voluptatem
-                        eos amet vero laborum error. Dolor distinctio temporibus iure, repellendus porro molestiae deleniti quibusdam?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </div>
 
                     <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
