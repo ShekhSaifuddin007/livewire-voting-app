@@ -9,7 +9,7 @@ class IdeasController extends Controller
 {
     public function index()
     {
-        $ideas = Idea::with(['user:id,name,email'])->paginate(10);
+        $ideas = Idea::with(['user:id,name,email', 'category', 'status'])->paginate(10);
 
         return view('idea.index', compact('ideas'));
     }
@@ -26,8 +26,6 @@ class IdeasController extends Controller
 
     public function show(Idea $idea)
     {
-        $idea = $idea->load('user');
-
         return view('idea.show', compact('idea'));
     }
 
