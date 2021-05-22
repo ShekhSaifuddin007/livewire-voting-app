@@ -32,6 +32,7 @@
             <livewire:idea-index
                 :idea="$idea"
                 :bottom-or-top="$loop->last ? 'bottom-8' : 'top-8'"
+                :votes-count="$idea->votes_count"
             />
         @endforeach
     </div> <!-- end ideas-container -->

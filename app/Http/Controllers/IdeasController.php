@@ -11,7 +11,7 @@ class IdeasController extends Controller
     public function index()
     {
         $ideas = Idea::with(['user', 'category', 'status'])
-            ->addSelect(['is_voted_by_user' => Vote::select('id')
+            ->addSelect(['is_voted_by_user' => Vote::query()->select('id')
                 ->where('user_id', auth()->id())
                 ->whereColumn('idea_id', 'ideas.id')
             ])

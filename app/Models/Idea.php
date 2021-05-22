@@ -44,6 +44,25 @@ class Idea extends Model
             ->exists();
     }
 
+    public function vote($user)
+    {
+        $this->votes()->toggle($user);
+        // $this->votes()->attach($user);
+        // Vote::create([
+        //     'idea_id' => $this->id,
+        //     'user_id' => $user->id,
+        // ]);
+    }
+
+    // public function removeVote($user)
+    // {
+    //     $this->votes()->detach($user);
+    //     Vote::query()->where('idea_id', $this->id)
+    //         ->where('user_id', $user->id)
+    //         ->first()
+    //         ->delete();
+    // }
+
     public function sluggable(): array
     {
         return [
