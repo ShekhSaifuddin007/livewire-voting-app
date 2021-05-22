@@ -9,8 +9,11 @@ class IdeasController extends Controller
 {
     public function index()
     {
-        $ideas = Idea::with(['user:id,name,email', 'category', 'status'])
-            ->latest()->paginate(10);
+        $ideas = Idea::with(['user', 'category', 'status'])
+            ->withCount('votes')
+            ->latest('id')->paginate(10);
+
+        // dd($ideas);
 
         return view('idea.index', compact('ideas'));
     }
@@ -27,7 +30,9 @@ class IdeasController extends Controller
 
     public function show(Idea $idea)
     {
-        return view('idea.show', compact('idea'));
+        $votesCount = $idea->votes()->count();
+
+        return view('idea.show', compact('idea', 'votesCount'));
     }
 
     public function edit($id)

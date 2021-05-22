@@ -28,6 +28,11 @@ class Idea extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function votes()
+    {
+        return $this->belongsToMany(User::class, 'votes');
+    }
+
     public function sluggable(): array
     {
         return [
@@ -37,16 +42,12 @@ class Idea extends Model
         ];
     }
 
-    protected static function booted()
-    {
-        static::creating(function ($model) {
-            $model->user_id = auth()->id();
-        });
-
-        // static::updating(function ($model) {
-        //     $model->users_id = auth()->id();
-        // });
-    }
+    // protected static function booted()
+    // {
+    //     static::creating(function ($model) {
+    //         $model->user_id = auth()->id();
+    //     });
+    // }
 
     // public function getStatuses()
     // {
