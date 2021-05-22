@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class IdeasController extends Controller
@@ -10,6 +11,10 @@ class IdeasController extends Controller
     public function index()
     {
         $ideas = Idea::with(['user', 'category', 'status'])
+            ->addSelect(['is_voted_by_user' => Vote::select('id')
+                ->where('user_id', auth()->id())
+                ->whereColumn('idea_id', 'ideas.id')
+            ])
             ->withCount('votes')
             ->latest('id')->paginate(10);
 

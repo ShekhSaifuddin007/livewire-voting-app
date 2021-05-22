@@ -5,12 +5,24 @@
 >
     <div class="hidden md:block border-r border-gray-100 px-5 py-8">
         <div class="text-center">
-            <div class="font-semibold text-2xl">{{ $idea->votes_count }}</div>
+            <div class="font-semibold text-2xl {{ $hasVoted ? 'text-teal-500' : '' }}">{{ $idea->votes_count }}</div>
             <div class="text-gray-500">Votes</div>
         </div>
 
         <div class="mt-8">
-            <button class="w-20 bg-gray-200 border border-gray-200 focus:outline-none hover:border-teal-500 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">Vote</button>
+            @if ($hasVoted)
+                <button
+                    class="w-20 bg-teal-500 text-white focus:outline-none hover:bg-teal-600 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3"
+                >
+                    Voted
+                </button>
+            @else
+                <button
+                    class="w-20 bg-gray-200 border border-gray-200 focus:outline-none hover:border-teal-500 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3"
+                >
+                    Vote
+                </button>
+            @endif
         </div>
     </div>
 
@@ -63,14 +75,24 @@
 
                 <div class="flex items-center md:hidden mt-4 md:mt-0">
                     <div class="bg-gray-100 text-center rounded-bl-full rounded-tl-full h-10 px-4 py-2 pr-8">
-                        <div class="text-sm font-bold leading-none">{{ $idea->votes_count }}</div>
+                        <div class="text-sm font-bold leading-none {{ $hasVoted ? 'text-teal-500' : '' }}">{{ $idea->votes_count }}</div>
                         <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
                     </div>
-                    <button
-                        class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-full focus:outline-none hover:border-teal-500 transition duration-150 ease-in px-4 py-3 -mx-5"
-                    >
-                        Vote
-                    </button>
+
+                    @if ($hasVoted)
+                        <button
+                            class="w-20 bg-teal-500 text-white font-bold text-xxs uppercase rounded-full focus:outline-none hover:bg-teal-600 transition duration-150 ease-in px-4 py-3 -mx-5"
+                        >
+                            Voted
+                        </button>
+                    @else
+                        <button
+                            class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-full focus:outline-none hover:border-teal-500 transition duration-150 ease-in px-4 py-3 -mx-5"
+                        >
+                            Vote
+                        </button>
+                    @endif
+
                 </div>
             </div>
         </div>

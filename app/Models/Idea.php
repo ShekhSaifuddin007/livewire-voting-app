@@ -33,6 +33,17 @@ class Idea extends Model
         return $this->belongsToMany(User::class, 'votes');
     }
 
+    public function isVotedBy($user)
+    {
+        if (!$user) {
+            return false;
+        }
+
+        return Vote::query()->where('user_id', $user->id)
+            ->where('idea_id', $this->id)
+            ->exists();
+    }
+
     public function sluggable(): array
     {
         return [
@@ -53,9 +64,9 @@ class Idea extends Model
     // {
     //     $statuses = [
     //         'Open' => 'bg-gray-200',
-    //         'Considering' => 'bg-purple-500 text-white', 
-    //         'In Progress' => 'bg-yellow-500 text-white', 
-    //         'Implemented' => 'bg-green-500 text-white', 
+    //         'Considering' => 'bg-purple-500 text-white',
+    //         'In Progress' => 'bg-yellow-500 text-white',
+    //         'Implemented' => 'bg-green-500 text-white',
     //         'Closed'      => 'bg-red-500 text-white'
     //     ];
 
