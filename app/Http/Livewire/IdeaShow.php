@@ -25,7 +25,7 @@ class IdeaShow extends Component
         }
 
         if ($this->hasVoted) {
-            $this->idea->removeVote(auth()->user());
+            $this->idea->vote(auth()->user());
             $this->votesCount--;
             $this->hasVoted = false;
         } else {
