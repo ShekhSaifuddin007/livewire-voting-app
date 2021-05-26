@@ -41,9 +41,14 @@ class IdeasIndex extends Component
     {
         $statuses = $this->getStatuses();
 
+        $categories = Category::all();
+
         $ideas = Idea::with(['user', 'category', 'status'])
             ->when($this->status && $this->status !== 'all', function ($query) use ($statuses) {
                 return $query->where('status_id', $statuses->get($this->status));
+            })
+            ->when($this->category && $this->category !== 'all', function ($query) use ($categories) {
+                return $query->where('category_id', $categories->pluck('id', 'name')->get($this->category));
             })
             ->addSelect(['is_voted_by_user' => Vote::query()->select('id')
                 ->where('user_id', auth()->id())
@@ -51,8 +56,6 @@ class IdeasIndex extends Component
             ])
             ->withCount('votes')
             ->latest('id')->paginate(3);
-
-        $categories = Category::all();
 
         return view('livewire.ideas-index', compact('ideas', 'categories'));
     }

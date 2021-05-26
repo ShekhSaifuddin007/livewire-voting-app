@@ -79,12 +79,14 @@ class Idea extends Model
         ];
     }
 
-    // protected static function booted()
-    // {
-    //     static::creating(function ($model) {
-    //         $model->user_id = auth()->id();
-    //     });
-    // }
+    protected static function booted()
+    {
+        if (! app()->runningInConsole()) {
+            static::creating(function ($model) {
+                $model->user_id = auth()->id();
+            });
+        }
+    }
 
     // public function getStatuses()
     // {
