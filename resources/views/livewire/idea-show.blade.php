@@ -9,7 +9,7 @@
 
             <div class="flex flex-col justify-between mx-2 md:mx-4">
                 <h4 class="text-lg md:text-xl mt-2 md:mt-0 font-semibold">
-                    <a href="#" class="hover:underline">{{ $idea->title }}</a>
+                    <span>{{ $idea->title }}</span>
                 </h4>
                 <div class="text-gray-600 mt-3">
                     {{ $idea->description }}

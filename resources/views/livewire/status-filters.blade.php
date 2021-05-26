@@ -3,7 +3,7 @@
         <li>
             <a
                 wire:click.prevent="setStatus('all')"
-                href="#"
+                href="{{ route('/', ['status' => 'all']) }}"
                 class="border-b-4 {{ $status === 'all' ? 'border-teal-500' : 'text-gray-400 border-gray-300 hover:border-teal-500 transition duration-150 ease-in' }} pb-3"
             >
                 All Ideas ({{ $statusCount['all_statuses'] }})
@@ -12,7 +12,7 @@
         <li>
             <a
                 wire:click.prevent="setStatus('considering')"
-                href="#"
+                href="{{ route('/', ['status' => 'considering']) }}"
                 class="border-b-4 {{ $status === 'considering' ? 'border-teal-500' : 'text-gray-400 border-gray-300 hover:border-teal-500 transition duration-150 ease-in' }} pb-3"
             >
                 Considering ({{ $statusCount['considering'] }})
@@ -21,7 +21,7 @@
         <li>
             <a
                 wire:click.prevent="setStatus('progress')"
-                href="#"
+                href="{{ route('/', ['status' => 'progress']) }}"
                 class="border-b-4 {{ $status === 'progress' ? 'border-teal-500' : 'text-gray-400 border-gray-300 hover:border-teal-500 transition duration-150 ease-in' }} pb-3"
             >
                 In Progress ({{ $statusCount['in_progress'] }})
@@ -33,7 +33,7 @@
         <li>
             <a
                 wire:click.prevent="setStatus('open')"
-                href="#"
+                href="{{ route('/', ['status' => 'open']) }}"
                 class="border-b-4 {{ $status === 'open' ? 'border-teal-500' : 'text-gray-400 border-gray-300 hover:border-teal-500 transition duration-150 ease-in' }} pb-3"
             >
                 Open ({{ $statusCount['open'] }})
@@ -42,7 +42,7 @@
         <li>
             <a
                 wire:click.prevent="setStatus('implemented')"
-                href="#"
+                href="{{ route('/', ['status' => 'implemented']) }}"
                 class="border-b-4 {{ $status === 'implemented' ? 'border-teal-500' : 'text-gray-400 border-gray-300 hover:border-teal-500 transition duration-150 ease-in' }} pb-3"
             >
                 Implemented ({{ $statusCount['implemented'] }})
@@ -51,7 +51,7 @@
         <li>
             <a
                 wire:click.prevent="setStatus('closed')"
-                href="#"
+                href="{{ route('/', ['status' => 'closed']) }}"
                 class="border-b-4 {{ $status === 'closed' ? 'border-teal-500' : 'text-gray-400 border-gray-300 hover:border-teal-500 transition duration-150 ease-in' }} pb-3"
             >
                 Closed ({{ $statusCount['closed'] }})
