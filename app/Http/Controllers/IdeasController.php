@@ -3,24 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
-use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class IdeasController extends Controller
 {
     public function index()
     {
-        $ideas = Idea::with(['user', 'category', 'status'])
-            ->addSelect(['is_voted_by_user' => Vote::query()->select('id')
-                ->where('user_id', auth()->id())
-                ->whereColumn('idea_id', 'ideas.id')
-            ])
-            ->withCount('votes')
-            ->latest('id')->paginate(10);
+        return view('idea.index');
 
-        // dd($ideas);
-
-        return view('idea.index', compact('ideas'));
+        return response(view('idea.index'))
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     public function create()
@@ -37,7 +29,8 @@ class IdeasController extends Controller
     {
         $votesCount = $idea->votes()->count();
 
-        return view('idea.show', compact('idea', 'votesCount'));
+        return response(view('idea.show', compact('idea', 'votesCount')))
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     public function edit($id)

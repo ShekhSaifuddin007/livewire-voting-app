@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -47,17 +49,22 @@ class User extends Authenticatable
         return $this->hasMany(Idea::class);
     }
 
-    public function votes()
+    public function votes(): BelongsToMany
     {
         return $this->belongsToMany(Idea::class, 'votes');
     }
+
+    // public function votes(): MorphToMany
+    // {
+    //     return $this->morphToMany(Idea::class, 'voteable');
+    // }
 
     public function photoUrl()
     {
         $firstCharacter = $this->email[0];
 
-        $integerOrString = is_numeric($firstCharacter) ? 
-                        ord(strtolower($firstCharacter)) - 21 : 
+        $integerOrString = is_numeric($firstCharacter) ?
+                        ord(strtolower($firstCharacter)) - 21 :
                         ord(strtolower($firstCharacter)) - 96;
 
         return 'https://www.gravatar.com/avatar/'
