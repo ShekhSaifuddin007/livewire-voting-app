@@ -74,4 +74,11 @@ class User extends Authenticatable
             .$integerOrString
             .'.png';
     }
+
+    public function isAdmin()
+    {
+        return in_array($this->email, [
+            'saif@saif.com'
+        ]);
+    }
 }
