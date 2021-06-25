@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Vote;
 use App\Models\Status;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -92,7 +94,7 @@ class IdeasIndex extends Component
         return view('livewire.ideas-index', compact('ideas', 'categories'));
     }
 
-    private function getStatuses()
+    private function getStatuses(): Collection
     {
         $getStatuses = Status::query()->get()->pluck('id', 'name');
 

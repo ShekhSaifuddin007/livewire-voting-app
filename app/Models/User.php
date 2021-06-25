@@ -75,9 +75,9 @@ class User extends Authenticatable
             .'.png';
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
-        return in_array($this->email, [
+        return !! in_array($this->email, [
             'saif@saif.com'
         ]);
     }

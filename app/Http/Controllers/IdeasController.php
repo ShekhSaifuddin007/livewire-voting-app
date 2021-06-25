@@ -9,8 +9,6 @@ class IdeasController extends Controller
 {
     public function index()
     {
-        return view('idea.index');
-
         return response(view('idea.index'))
             ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
