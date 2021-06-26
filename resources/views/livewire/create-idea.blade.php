@@ -1,5 +1,5 @@
 
-<form wire:submit.prevent="createIdea" method="POST" class="space-y-4 px-4 py-6">
+<form wire:submit.prevent="createIdea" method="post" class="space-y-4 px-4 py-6">
     <div>
         <input wire:model.defer="title" type="text" class="w-full text-sm bg-gray-100 focus:ring-teal-500 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Your Idea">
         @error('title')
@@ -9,7 +9,7 @@
     <div>
         <select wire:model.defer="category" id="category" class="w-full bg-gray-100 focus:ring-teal-500 text-sm rounded-xl border-none px-4 py-2">
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>                
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
         @error('category')
@@ -45,7 +45,7 @@
 
     <div>
         @if (session('message'))
-            <div 
+            <div
                 x-data="{ isVisible: true }"
                 x-init="
                     setTimeout(() => {
@@ -58,6 +58,6 @@
             >
                 {{ session('message') }}
             </div>
-        @endif  
+        @endif
     </div>
 </form>
