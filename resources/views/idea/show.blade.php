@@ -13,7 +13,17 @@
         :votes-count="$votesCount"
      />
 
-    <livewire:edit-idea-modal :idea="$idea" />
+     @can('update', $idea)
+        <livewire:edit-idea-modal
+            :idea="$idea"
+        />
+     @endcan
+
+     @can('delete', $idea)
+        <livewire:delete-idea-modal 
+            :idea="$idea" 
+        />         
+     @endcan
 
     <div class="comments-container relative space-y-6 ml-0 md:ml-22 pt-4 my-8 mt-1">
         <div class="comment-container relative bg-white rounded-xl flex mt-4">

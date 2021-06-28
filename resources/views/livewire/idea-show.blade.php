@@ -41,18 +41,32 @@
                                 @keydown.escape.window="isOpen = false"
                                 class="absolute right-0 top-8 shadow-lg w-44 z-10 text-left font-semibold bg-white shadow-lg rounded-xl py-3">
 
-                                <li>
-                                    <a
-                                        @click.prevent="
-                                            isOpen = false
-                                            $dispatch('custom-show-modal')
-                                        "
-                                        href="#"
-                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                                        Edit Idea
-                                    </a>
-                                </li>
-                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Idea</a></li>
+                                @can('update', $idea)
+                                    <li>
+                                        <a
+                                            @click.prevent="
+                                                isOpen = false
+                                                $dispatch('custom-show-edit-modal')
+                                            "
+                                            href="#"
+                                            class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
+                                            Edit Idea
+                                        </a>
+                                    </li>
+                                @endcan
+
+                                @can('delete', $idea)
+                                    <li>
+                                        <a
+                                            @click.prevent="
+                                                isOpen = false
+                                                $dispatch('custom-show-delete-modal')
+                                            "
+                                            href="#"
+                                            class="hover:bg-gray-100 block transition text-red-500 duration-150 ease-in px-5 py-3">Delete Idea</a>
+                                    </li>
+                                @endcan
+                                
                                 <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
                             </ul>
                         </div>

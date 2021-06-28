@@ -2,7 +2,10 @@
     x-data="{ isOpen: false }"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    @custom-show-modal.window="isOpen = true"
+    @custom-show-edit-modal.window="
+        isOpen = true
+        $nextTick(() => $refs.titleInput.focus())
+    "
     x-cloak
     x-init="
         window.livewire.on('closeModalAndRefreshComponent', () => {
@@ -38,7 +41,7 @@
 
                 <form wire:submit.prevent="updateIdea" method="post" class="space-y-4 px-4">
                     <div>
-                        <input wire:model.defer="title" type="text" class="w-full text-sm bg-gray-100 focus:ring-teal-500 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Your Idea">
+                        <input wire:model.defer="title" x-ref="titleInput" type="text" class="w-full text-sm bg-gray-100 focus:ring-teal-500 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Your Idea">
                         @error('title')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror

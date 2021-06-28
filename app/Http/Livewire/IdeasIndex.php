@@ -89,7 +89,7 @@ class IdeasIndex extends Component
                 ->whereColumn('idea_id', 'ideas.id')
             ])
             ->withCount('votes')
-            ->latest('id')->paginate(3);
+            ->latest('id')->paginate();
 
         return view('livewire.ideas-index', compact('ideas', 'categories'));
     }
