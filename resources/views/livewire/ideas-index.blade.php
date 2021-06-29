@@ -13,6 +13,9 @@
                 <option value="all">All</option>
                 <option value="top-voted">Top Voted</option>
                 <option value="my-ideas">My Ideas</option>
+                @isadmin
+                    <option value="spam-ideas">Spam Ideas</option>
+                @endisadmin
             </select>
         </div>
         <div class="w-full md:w-2/3 relative">

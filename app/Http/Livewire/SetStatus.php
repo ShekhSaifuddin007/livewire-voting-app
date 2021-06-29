@@ -33,7 +33,7 @@ class SetStatus extends Component
             // $this->notifyAllVoters();
         }
 
-        $this->emit('statusWasUpdated');
+        $this->emit('closeModalAndRefreshComponent');
     }
 
     // protected function notifyAllVoters()

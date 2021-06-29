@@ -1,7 +1,7 @@
 <div
     x-data="{ isOpen: false }"
     x-init="
-        window.livewire.on('statusWasUpdated', () => {
+        window.livewire.on('closeModalAndRefreshComponent', () => {
             isOpen = false
         })
     "

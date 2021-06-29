@@ -41,6 +41,11 @@
             </h4>
 
             <div class="text-gray-600 mt-3 line-clamp-3 min-h-13">
+                @isadmin
+                    @if ($idea->spam_reports > 0)
+                        <div class="text-red-500 mb-2">Spam Reports: {{ $idea->spam_reports }}</div>
+                    @endif
+                @endisadmin
                 {{ $idea->description }}
             </div>
 

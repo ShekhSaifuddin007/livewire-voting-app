@@ -12,7 +12,6 @@ class IdeaShow extends Component
     public $hasVoted;
 
     protected $listeners = [
-        'statusWasUpdated' => '$refresh',
         'closeModalAndRefreshComponent' => '$refresh'
     ];
 
