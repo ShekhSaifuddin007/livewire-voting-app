@@ -7,7 +7,7 @@
                 </a>
             </div>
 
-            <div class="flex flex-col justify-between mx-2 md:mx-4">
+            <div class="flex flex-col justify-between mx-2 md:mx-4 w-full">
                 <h4 class="text-lg md:text-xl mt-2 md:mt-0 font-semibold">
                     <span>{{ $idea->title }}</span>
                 </h4>

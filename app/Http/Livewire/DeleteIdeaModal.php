@@ -25,6 +25,8 @@ class DeleteIdeaModal extends Component
 
         $this->idea->delete();
 
+        session()->flash('message', 'Idea was deleted successfully.!');
+
         return redirect()->route('/');
     }
 

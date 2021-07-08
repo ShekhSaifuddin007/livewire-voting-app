@@ -13,25 +13,11 @@
         :votes-count="$votesCount"
      />
 
-    @can('update', $idea)
-        <livewire:edit-idea-modal
-            :idea="$idea"
-        />
-    @endcan
+    <x-success-notification />
 
-    @can('delete', $idea)
-        <livewire:delete-idea-modal
-            :idea="$idea"
-        />
-    @endcan
-
-    <livewire:mark-as-spam-modal
-        :idea="$idea"
-    />
-
-    <livewire:mark-as-not-spam-modal
-        :idea="$idea"
-    />
+    @push('modals')
+        <x-ideas-modal-container :idea="$idea" />
+    @endpush
 
     <div class="comments-container relative space-y-6 ml-0 md:ml-22 pt-4 my-8 mt-1">
         <div class="comment-container relative bg-white rounded-xl flex mt-4">

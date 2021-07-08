@@ -25,7 +25,7 @@ class MarkAsNotSpamModal extends Component
             'spam_reports' => 0
         ]);
 
-        $this->emit('closeModalAndRefreshComponent');
+        $this->emit('closeModalAndRefreshComponent', 'Spam counter was reset.!');
     }
 
     public function render()

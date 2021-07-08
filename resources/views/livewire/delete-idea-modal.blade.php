@@ -1,4 +1,3 @@
-
 <x-modal-confirm
     open-modal="delete"
     close-modal=""

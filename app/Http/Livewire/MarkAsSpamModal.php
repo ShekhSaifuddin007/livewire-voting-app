@@ -23,7 +23,7 @@ class MarkAsSpamModal extends Component
 
         $this->idea->increment('spam_reports');
 
-        $this->emit('closeModalAndRefreshComponent');
+        $this->emit('closeModalAndRefreshComponent', 'Idea was marked as spam.!');
     }
 
     public function render()

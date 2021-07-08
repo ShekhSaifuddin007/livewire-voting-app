@@ -93,7 +93,7 @@
             </div>
 
             <div class="w-full md:w-4/6">
-                
+
                 <livewire:status-filters />
 
                 <div class="mt-8">
@@ -101,6 +101,19 @@
                 </div>
             </div>
         </main>
+
+
+        @if (session('message'))
+            <x-success-notification
+                :redirect="true"
+                message="{{ session('message') }}"
+            />
+        @endif
+
+
+
+
+        @stack('modals')
 
         <livewire:scripts />
 

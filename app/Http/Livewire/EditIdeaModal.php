@@ -43,7 +43,7 @@ class EditIdeaModal extends Component
             'description' => $this->description
         ]);
 
-        $this->emit('closeModalAndRefreshComponent');
+        $this->emit('closeModalAndRefreshComponent', 'Idea was updated successfully.!');
     }
 
     public function render()
