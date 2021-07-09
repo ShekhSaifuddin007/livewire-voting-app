@@ -11,6 +11,9 @@ module.exports = {
 
     theme: {
         extend: {
+            width: {
+                'fit-content': 'fit-content'
+            },
             colors: {
                 transparent: 'transparent',
                 current: 'currentColor',

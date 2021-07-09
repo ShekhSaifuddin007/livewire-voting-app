@@ -23,6 +23,8 @@ class DeleteIdeaModal extends Component
 
         $this->idea->votes()->detach();
 
+        $this->idea->comments()->delete();
+
         $this->idea->delete();
 
         session()->flash('message', 'Idea was deleted successfully.!');
