@@ -16,6 +16,8 @@ class IdeaComments extends Component
     public function mount(Idea $idea)
     {
         $this->idea = $idea;
+
+        
     }
 
     public function render()
