@@ -38,7 +38,7 @@ class CreateComment extends Component
 
         $this->reset('comment');
 
-        $this->emit('closeModalAndRefreshComponent', 'Comment was added on this idea successfully.!');
+        $this->emit('commentWasAdded', 'Comment was added on this idea successfully.!');
     }
 
     public function render()

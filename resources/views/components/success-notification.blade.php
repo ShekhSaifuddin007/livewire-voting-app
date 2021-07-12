@@ -23,6 +23,10 @@
             Livewire.on('closeModalAndRefreshComponent', (message) => {
                 notificationMessage(message)
             })
+
+            Livewire.on('commentWasAdded', (message) => {
+                notificationMessage(message)
+            })
         @endif
     "
 

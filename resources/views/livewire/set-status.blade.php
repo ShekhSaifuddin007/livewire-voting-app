@@ -28,31 +28,31 @@
         <form wire:submit.prevent="setStatus" class="space-y-4 px-4 py-6">
             <div class="space-y-2">
                 <div>
-                    <label class="inline-flex items-center">
+                    <label class="inline-flex items-center cursor-pointer">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-gray-600 focus:ring-gray-600 border-none" name="status" value="1" checked>
                         <span class="ml-2">Open</span>
                     </label>
                 </div>
                 <div>
-                    <label class="inline-flex items-center">
+                    <label class="inline-flex items-center cursor-pointer">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-purple-500 focus:ring-purple-500 border-none" name="status" value="2">
                         <span class="ml-2">Considering</span>
                     </label>
                 </div>
                 <div>
-                    <label class="inline-flex items-center">
+                    <label class="inline-flex items-center cursor-pointer">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-yellow-500 focus:ring-yellow-500 border-none" name="status" value="3">
                         <span class="ml-2">In Progress</span>
                     </label>
                 </div>
                 <div>
-                    <label class="inline-flex items-center">
+                    <label class="inline-flex items-center cursor-pointer">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-green-500 focus:ring-green-500 border-none" name="status" value="4">
                         <span class="ml-2">Implemented</span>
                     </label>
                 </div>
                 <div>
-                    <label class="inline-flex items-center">
+                    <label class="inline-flex items-center cursor-pointer">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-red-500 focus:ring-red-500 border-none" name="status" value="5">
                         <span class="ml-2">Closed</span>
                     </label>
