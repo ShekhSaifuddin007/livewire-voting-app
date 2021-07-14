@@ -13,6 +13,12 @@
 
         <div class="md:w-full flex flex-col justify-between mx-2 md:mx-4">
             <div class="text-gray-600 mt-3 md:mt-0">
+                @isadmin
+                    @if ($comment->spam_reports > 0)
+                        <div class="text-red-500 mb-2">Spam Reports: {{ $comment->spam_reports }}</div>
+                    @endif
+                @endisadmin
+
                 {{ $comment->body }}
             </div>
 
@@ -22,15 +28,86 @@
                     <div>&bull;</div>
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <button class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3">
-                        <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
-                        <ul class="hidden absolute right-0 top-8 shadow-lg w-44 text-left z-10 font-semibold bg-white rounded-xl py-3">
-                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark as Spam</a></li>
-                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete Post</a></li>
-                        </ul>
-                    </button>
-                </div>
+
+                @auth
+                    <div
+                        class="flex items-center space-x-2"
+                        x-data="{ isOpen: false }"
+                    >
+                        <div class="relative">
+                            <button
+                                class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 focus:outline-none transition duration-150 ease-in py-2 px-3"
+                                @click.prevent="isOpen = !isOpen"
+                            >
+                                <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
+                            </button>
+                            <ul
+                                class="absolute right-0 {{ $bottomOrTop }} shadow-lg w-44 text-left z-10 font-semibold bg-white rounded-xl py-3"
+                                x-cloak
+                                x-show.transition.origin.top.left="isOpen"
+                                @click.away="isOpen = false"
+                                @keydown.escape.window="isOpen = false"
+                            >
+                                @can('update', $comment)
+                                    <li>
+                                        <a
+                                            @click.prevent="
+                                                isOpen = false
+                                                Livewire.emit('setEditComment', {{ $comment->id }})
+                                            "
+                                            href="#"
+                                            class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                        >
+                                            Edit Comment
+                                        </a>
+                                    </li>
+                                @endcan
+
+                                @can('delete', $comment)
+                                    <li>
+                                        <a
+                                            @click.prevent="
+                                                isOpen = false
+                                                Livewire.emit('setDeleteComment', {{ $comment->id }})
+                                            "
+                                            href="#"
+                                            class="hover:bg-gray-100 block transition text-red-500 duration-150 ease-in px-5 py-3"
+                                        >
+                                            Delete Comment
+                                        </a>
+                                    </li>
+                                @endcan
+
+                                <li>
+                                    <a
+                                        @click.prevent="
+                                            isOpen = false
+                                            Livewire.emit('setMarkAsSpamComment', {{ $comment->id }})
+                                        "
+                                        href="#"
+                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                    >
+                                        Mark as Spam
+                                    </a>
+                                </li>
+
+                                @isadmin
+                                    @if ($comment->spam_reports > 0)
+                                        <li>
+                                            <a
+                                                @click.prevent="
+                                                    isOpen = false
+                                                    Livewire.emit('setMarkAsNotSpamComment', {{ $comment->id }})
+                                                "
+                                                href="#"
+                                                class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Not Spam</a>
+                                        </li>
+                                    @endif
+                                @endisadmin
+                            </ul>
+                        </div>
+                    </div>
+                @endauth
             </div>
         </div>
     </div>

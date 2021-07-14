@@ -1,9 +1,10 @@
 @props([
-    'open-modal',
-    'close-modal' => '',
+    'openModal' => null,
+    'livewireEvent' => null,
+    'closeModal' => '',
     'title',
     'description',
-    'btn-text',
+    'btnText',
     'submit'
 ])
 
@@ -12,10 +13,14 @@
     x-data="{ isOpen: false }"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    @custom-show-{{ $openModal }}-modal.window="
-        isOpen = true
-        $nextTick(() => $refs.confirmButton.focus())
-    "
+
+    @if (! $livewireEvent)
+        @custom-show-{{ $openModal }}-modal.window="
+            isOpen = true
+            $nextTick(() => $refs.confirmButton.focus())
+        "
+    @endif
+
     x-cloak
 
     @if ($closeModal !== '')
@@ -23,6 +28,13 @@
             Livewire.on('{{ $closeModal }}', () => {
                 isOpen = false
             })
+
+            @if ($livewireEvent)
+                Livewire.on('{{ $livewireEvent }}', () => {
+                    isOpen = true
+                    $nextTick(() => $refs.confirmButton.focus())
+                })
+            @endif
         "
     @endif
 

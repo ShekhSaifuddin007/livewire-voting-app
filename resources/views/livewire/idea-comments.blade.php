@@ -6,6 +6,7 @@
                     :key="$comment->id"
                     :comment="$comment"
                     :ideaUserId="$idea->user->id"
+                    :bottom-or-top="$loop->last ? 'bottom-8' : 'top-8'"
                 />
             @endforeach
         </div> <!-- end comments-container -->

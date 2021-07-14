@@ -15,6 +15,7 @@
                 <option value="my-ideas">My Ideas</option>
                 @isadmin
                     <option value="spam-ideas">Spam Ideas</option>
+                    <option value="spam-comments">Spam Comments</option>
                 @endisadmin
             </select>
         </div>

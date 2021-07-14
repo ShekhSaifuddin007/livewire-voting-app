@@ -14,6 +14,7 @@ class IdeaShow extends Component
     protected $listeners = [
         'closeModalAndRefreshComponent' => '$refresh',
         'commentWasAdded' => '$refresh',
+        'commentWasDeleted' => '$refresh',
     ];
 
     public function mount(Idea $idea, $votesCount)

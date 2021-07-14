@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Idea::class)->constrained();
             $table->text('body');
+            $table->integer('spam_reports')->default(0);
             $table->timestamps();
         });
     }

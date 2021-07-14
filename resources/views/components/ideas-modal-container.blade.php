@@ -12,7 +12,7 @@
 @endcan
 
     <livewire:mark-as-spam-modal
-    :idea="$idea"
+        :idea="$idea"
     />
 
 @isadmin
@@ -20,3 +20,20 @@
         :idea="$idea"
     />
 @endisadmin
+
+@auth
+    <livewire:edit-comment-modal />
+@endauth
+
+@auth
+    <livewire:delete-comment-modal />
+@endauth
+
+@auth
+    <livewire:mark-spam-comment-modal />
+@endauth
+
+@isadmin
+    <livewire:mark-not-spam-comment-modal />
+@endisadmin
+

@@ -27,6 +27,18 @@
             Livewire.on('commentWasAdded', (message) => {
                 notificationMessage(message)
             })
+
+            Livewire.on('commentWasDeleted', (message) => {
+                notificationMessage(message)
+            })
+
+            Livewire.on('commentWasMarkedAsSpam', (message) => {
+                notificationMessage(message)
+            })
+
+            Livewire.on('commentWasMarkedAsNotSpam', (message) => {
+                notificationMessage(message)
+            })
         @endif
     "
 
