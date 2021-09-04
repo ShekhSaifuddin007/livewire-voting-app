@@ -14,7 +14,7 @@
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
 
-    @if (! $livewireEvent)
+    @if ($openModal)
         @custom-show-{{ $openModal }}-modal.window="
             isOpen = true
             $nextTick(() => $refs.confirmButton.focus())

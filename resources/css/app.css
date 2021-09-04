@@ -16,7 +16,7 @@
         position: absolute;
         display: block;
         top: -10px;
-        left: -40px;
+        left: -39px;
         content: "";
         width: 3px;
         height: 100%;
@@ -40,11 +40,15 @@
         position: absolute;
         display: block;
         top: 60px;
-        left: -40px;
+        left: -39px;
         content: "";
         width: 3px;
         height: calc(100% - 60px);
         background: #f4f4f5;
+    }
+
+    .is-admin.comment-container:last-child::after {
+        left: -40px;
     }
 
     .is-admin::before {
@@ -57,6 +61,7 @@
         left: -58px;
         background: #14b8a6;
         opacity: 1;
+        z-index: 1;
     }
     .is-admin {
         border-width: 1px;
