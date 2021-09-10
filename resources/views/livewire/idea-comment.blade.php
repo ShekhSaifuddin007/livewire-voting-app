@@ -1,13 +1,17 @@
-<div class="comment-container relative bg-white rounded-xl flex mt-4 transition duration-500 ease-in">
+<div class="{{ $comment->is_status_update ? 'is-admin status-'.Str::kebab($comment->status->name) : null }} comment-container relative bg-white rounded-xl flex mt-4 transition duration-500 ease-in">
     <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
         <div class="flex-none mx-2 md:mx-0">
             <a href="#">
                 <img src="{{ $comment->user->photoUrl() }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
             @if ($comment->user->id === $ideaUserId)
-                <div class="bg-gray-200 font-semibold mt-2 w-fit-content px-2 py-1 rounded-full text-xs cursor-pointer" title="Original Poster">
+                <div class="bg-gray-200 text-black font-semibold mt-2 w-fit-content px-2 py-1 rounded-full text-xs cursor-pointer" title="Original Poster">
                     Author
                 </div>
+            @endif
+
+            @if ($comment->user->isAdmin())
+                <div class="text-left ml-3 md:ml-0 md:text-center uppercase text-teal-500 text-xxs font-bold mt-1">Admin</div>
             @endif
         </div>
 
@@ -19,12 +23,20 @@
                     @endif
                 @endisadmin
 
-                {{ $comment->body }}
+                @if ($comment->is_status_update)
+                    <h4 class="text-lg md:text-xl font-semibold mb-3">
+                        Status Changed to "{{ $comment->status->name }}"
+                    </h4>
+                @endif
+
+                <div>
+                    {{ $comment->body }}
+                </div>
             </div>
 
             <div class="flex items-center justify-between mt-6">
                 <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                    <div class="font-bold text-gray-900">{{ $comment->user->name }}</div>
+                    <div class="{{ $comment->is_status_update ? 'text-teal-500' : 'text-gray-900' }} font-bold">{{ $comment->user->name }}</div>
                     <div>&bull;</div>
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>

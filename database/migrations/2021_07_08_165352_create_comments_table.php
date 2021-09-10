@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Idea;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,8 +20,10 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Idea::class)->constrained();
+            $table->foreignIdFor(Status::class)->constrained();
             $table->text('body');
             $table->integer('spam_reports')->default(0);
+            $table->boolean('is_status_update')->default(false);
             $table->timestamps();
         });
     }

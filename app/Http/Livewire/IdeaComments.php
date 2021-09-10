@@ -15,7 +15,8 @@ class IdeaComments extends Component
 
     protected $listeners = [
         'commentWasAdded',
-        'commentWasDeleted'
+        'commentWasDeleted',
+        'closeModalAndRefreshComponent' => '$refresh'
     ];
 
     public function commentWasAdded()
@@ -41,7 +42,7 @@ class IdeaComments extends Component
     {
         return view('livewire.idea-comments', [
             // 'comments' => $this->idea->comments()->paginate()->withQueryString()
-            'comments' => Comment::with('user')->where('idea_id', $this->idea->id)->paginate()->withQueryString()
+            'comments' => Comment::with(['user', 'status'])->where('idea_id', $this->idea->id)->paginate()->withQueryString()
         ]);
     }
 }

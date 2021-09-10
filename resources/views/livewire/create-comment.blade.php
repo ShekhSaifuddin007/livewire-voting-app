@@ -12,8 +12,8 @@
                 firstComment.scrollIntoView({ behavior: 'smooth'})
             }
 
-            if (message.updateQueue[0].payload.event === 'commentWasAdded'
-             && message.component.fingerprint.name === 'idea-comments') {
+            if (['commentWasAdded', 'closeModalAndRefreshComponent'].includes(message.updateQueue[0].payload.event)
+                && message.component.fingerprint.name === 'idea-comments') {
                 const lastComment = document.querySelector('.comment-container:last-child')
                 lastComment.scrollIntoView({ behavior: 'smooth' })
                 lastComment.classList.add('bg-green-50')

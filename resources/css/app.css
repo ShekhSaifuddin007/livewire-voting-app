@@ -76,3 +76,25 @@
 [x-cloak] {
     display: none !important;
 }
+
+/* statuses styles */
+
+.status-open, .status-open:before {
+    @apply bg-gray-200
+}
+
+.status-considering, .status-considering:before {
+    @apply bg-purple-500 text-white
+}
+
+.status-in-progress, .status-in-progress:before {
+    @apply bg-yellow-500 text-white
+}
+
+.status-implemented, .status-implemented:before {
+    @apply bg-green-500 text-white
+}
+
+.status-closed, .status-closed:before {
+    @apply bg-red-500 text-white
+}
