@@ -6,7 +6,12 @@ use Livewire\Component;
 
 class CommentNotifications extends Component
 {
+    const NOTIFICATION_TRASHHOLD = 20;
+
     public $notifications;
+
+    public $notificationCount;
+    public $isLoading = true;
 
     protected $listeners = [
         'getNotifications'
@@ -15,11 +20,30 @@ class CommentNotifications extends Component
     public function mount()
     {
         $this->notifications = collect([]);
+
+        $this->getNotificationCount();
+    }
+
+    public function getNotificationCount()
+    {
+        $this->notificationCount = auth()->user()->unreadNotifications()->count();
+
+        if ($this->notificationCount > self::NOTIFICATION_TRASHHOLD) {
+            $this->notificationCount = self::NOTIFICATION_TRASHHOLD.'+';
+        }
     }
 
     public function getNotifications()
     {
-        $this->notifications = auth()->user()->notifications;
+        sleep(1);
+
+        $this->notifications = auth()->user()
+            ->unreadNotifications()
+            ->latest()
+            ->take(self::NOTIFICATION_TRASHHOLD)
+            ->get();
+
+        $this->isLoading = false;
     }
 
     public function render()
