@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Traits\WithAuthRedirects;
 use App\Models\Idea;
 use Livewire\Component;
 
 class IdeaIndex extends Component
 {
+    use WithAuthRedirects;
+
     public $idea, $bottomOrTop;
     public $hasVoted;
     public $votesCount;
@@ -22,7 +25,7 @@ class IdeaIndex extends Component
     public function vote()
     {
         if (auth()->guest()) {
-            return redirect()->route('login');
+            $this->redirectToIntended();
         }
 
         if ($this->hasVoted) {

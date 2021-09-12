@@ -6,12 +6,13 @@
         })
 
         Livewire.hook('message.processed', (message, component) => {
-            {{-- if (message.updateQueue[0].method === 'gotoPage' || message.updateQueue[0].method === 'nextPage' || message.updateQueue[0].method === 'previousPage') { --}}
+            {{-- Pagination --}}
             if (['gotoPage', 'previousPage', 'nextPage'].includes(message.updateQueue[0].method)) {
                 const firstComment = document.querySelector('.comment-container:first-child')
                 firstComment.scrollIntoView({ behavior: 'smooth'})
             }
 
+            {{-- Add Comment --}}
             if (['commentWasAdded', 'closeModalAndRefreshComponent'].includes(message.updateQueue[0].payload.event)
                 && message.component.fingerprint.name === 'idea-comments') {
                 const lastComment = document.querySelector('.comment-container:last-child')
@@ -22,6 +23,15 @@
                 }, 5000)
             }
         })
+
+        @if (session('scrollToComment'))
+            const scrollToComment = document.querySelector('#comment-{{ session('scrollToComment') }}')
+            scrollToComment.scrollIntoView({ behavior: 'smooth' })
+            scrollToComment.classList.add('bg-green-50')
+            setTimeout(() => {
+                scrollToComment.classList.remove('bg-green-50')
+            }, 5000)
+        @endif
     "
     class="relative">
     <button
@@ -87,12 +97,14 @@
                 <p class="font-normal">Please login or create an account to post a comment.</p>
                 <div class="flex items-center space-x-3 mt-8">
                     <a
+                        wire:click.prevent="redirectToIntended"
                         href="{{ route('login') }}"
                         class="w-1/2 h-11 text-sm text-center bg-teal-500 text-white font-semibold rounded-xl hover:bg-teal-600 transition duration-150 ease-in px-6 py-3"
                     >
                         Login
                     </a>
                     <a
+                        wire:click.prevent="redirectToIntended('register')"
                         href="{{ route('register') }}"
                         class="flex items-center justify-center w-1/2 h-11 text-sm bg-gray-200 font-semibold rounded-xl border hover:border-teal-500 transition duration-150 ease-in px-6 py-3"
                     >

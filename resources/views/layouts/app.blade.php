@@ -75,26 +75,8 @@
                             @endauth
                         </p>
                     </div>
-                    @auth
-                        <livewire:create-idea />
-                    @else
-                        <div class="my-6 text-center">
-                            <a
-                                href="{{ route('register') }}"
-                                class="inline-block justify-center w-1/2 h-11 text-sm bg-gray-200 focus:outline-none font-semibold rounded-xl border border-gray-200 hover:border-teal-500 transition duration-150 ease-in px-6 py-3"
-                            >
-                                Sign up
-                            </a>
 
-                            <a
-                                href="{{ route('login') }}"
-                                class="inline-block mt-2 justify-center w-1/2 h-11 text-sm bg-teal-500 focus:outline-none text-white font-semibold rounded-xl hover:bg-teal-600 transition duration-150 ease-in px-6 py-3"
-                            >
-                                Login
-                            </a>
-                        </div>
-                    @endauth
-
+                    <livewire:create-idea />
                 </div>
             </div>
 
@@ -116,8 +98,13 @@
             />
         @endif
 
-
-
+        @if (session('error_message'))
+            <x-success-notification
+                type="error"
+                :redirect="true"
+                message="{{ session('error_message') }}"
+            />
+        @endif
 
         @stack('modals')
 

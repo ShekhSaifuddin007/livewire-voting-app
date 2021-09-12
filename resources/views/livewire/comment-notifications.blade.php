@@ -1,4 +1,5 @@
 <div
+    wire:poll="getNotificationCount"
     x-data="{ isOpen: false }"
     class="relative"
 >
@@ -34,6 +35,10 @@
                 <li>
                     <a
                         href="{{ route('ideas.show', $notification->data['idea_slug']) }}"
+                        @click.prevent="
+                            isOpen = false
+                        "
+                        wire:click.prevent="markAsRead('{{ $notification->id }}')"
                         class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3"
                     >
                         <img src="{{ $notification->data['user_avatar'] }}" class="rounded-xl w-10 h-10" alt="avatar">
@@ -52,7 +57,9 @@
 
             <li class="border-t border-gray-300 text-center">
                 <button
-                    class="w-full block font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-4"
+                    wire:click.prevent="markAllAsRead"
+                    @click.prevent="isOpen = false"
+                    class="w-full block focus:outline-none font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-4"
                 >
                     Mark all as read
                 </button>
