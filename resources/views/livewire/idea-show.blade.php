@@ -17,7 +17,7 @@
                             <div class="text-red-500 mb-2">Spam Reports: {{ $idea->spam_reports }}</div>
                         @endif
                     @endisadmin
-                    {{ $idea->description }}
+                    {!! nl2br(e($idea->description)) !!}
                 </div>
 
                 <div class="flex flex-col items-start md:flex-row md:items-center justify-between mt-6">
@@ -28,7 +28,7 @@
                         <div>&bull;</div>
                         <div>{{ $idea->category->name }}</div>
                         <div>&bull;</div>
-                        <div class="text-gray-900">{{ $idea->comments()->count() }} Comments</div>
+                        <div class="text-gray-900">{{ $idea->comments()->count() }} <span>{{ $idea->comments()->count() > 1 ? 'Comments' : 'Comment' }}</span></div>
                     </div>
 
                     <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-3 md:mt-0">
@@ -45,7 +45,7 @@
                                     x-show.transition.origin.top.left="isOpen"
                                     @click.away="isOpen = false"
                                     @keydown.escape.window="isOpen = false"
-                                    class="absolute right-0 top-8 shadow-lg w-44 z-10 text-left font-semibold bg-white shadow-lg rounded-xl py-3">
+                                    class="absolute right-0 top-8 w-44 z-10 text-left font-semibold bg-white shadow-lg rounded-xl py-3">
 
                                     @can('update', $idea)
                                         <li>

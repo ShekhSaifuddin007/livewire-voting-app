@@ -18,6 +18,7 @@ class IdeaShow extends Component
         'closeModalAndRefreshComponent' => '$refresh',
         'commentWasAdded' => '$refresh',
         'commentWasDeleted' => '$refresh',
+        'statusUpdatedError' => '$refresh'
     ];
 
     public function mount(Idea $idea, $votesCount)

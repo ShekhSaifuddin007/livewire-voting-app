@@ -8,6 +8,8 @@
 <div
     x-data="{
         isOpen: false,
+        {{-- isError: $type === 'error' ? true : false, --}}
+        isError: @if($type === 'success') false @elseif($type === 'error') true @endif,
         successMessage: '{{ $message }}',
         notificationMessage(message) {
             this.successMessage = message
@@ -22,22 +24,32 @@
             $nextTick(() => notificationMessage(successMessage))
         @else
             Livewire.on('closeModalAndRefreshComponent', (message) => {
+                isError = false
                 notificationMessage(message)
             })
 
             Livewire.on('commentWasAdded', (message) => {
+                isError = false
+                notificationMessage(message)
+            })
+
+            Livewire.on('statusUpdatedError', (message) => {
+                isError = true
                 notificationMessage(message)
             })
 
             Livewire.on('commentWasDeleted', (message) => {
+                isError = false
                 notificationMessage(message)
             })
 
             Livewire.on('commentWasMarkedAsSpam', (message) => {
+                isError = false
                 notificationMessage(message)
             })
 
             Livewire.on('commentWasMarkedAsNotSpam', (message) => {
+                isError = false
                 notificationMessage(message)
             })
         @endif
@@ -56,15 +68,15 @@
     class="z-20 flex justify-between max-w-xs sm:max-w-sm w-full fixed bottom-0 right-0 bg-white rounded-xl shadow-lg border px-4 py-5 mx-2 sm:mx-6 my-8"
 >
     <div class="flex items-center">
-        @if (! $type === 'error')
-            <svg class="text-green-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {{-- @if ($type !== 'error') --}}
+            <svg x-show="! isError" class="text-green-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-        @else
-            <svg class="text-red-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        {{-- @else --}}
+            <svg x-show="isError" class="text-red-600 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-        @endif
+        {{-- @endif --}}
 
         <div class="font-semibold text-gray-500 text-sm sm:text-base ml-2" x-text="successMessage"></div>
     </div>

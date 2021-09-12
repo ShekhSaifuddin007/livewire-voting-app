@@ -32,7 +32,8 @@
                 @endif
 
                 <div>
-                    {{ $comment->body }}
+                    {{-- {{ $comment->body }} --}}
+                    {!! nl2br(e($comment->body)) !!}
                 </div>
             </div>
 

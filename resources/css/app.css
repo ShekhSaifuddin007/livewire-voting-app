@@ -66,7 +66,6 @@
     .is-admin {
         border-width: 1px;
         border-image-source: linear-gradient(266deg, #5eead4 98%, #14b8a6 -52%);
-        border-image-slice: 1;
         background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(266deg, #5eead4 98%, #14b8a6 -52%);
         background-origin: border-box;
         background-clip: content-box, border-box;

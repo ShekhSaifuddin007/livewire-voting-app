@@ -21,10 +21,6 @@ class DeleteIdeaModal extends Component
             abort(Response::HTTP_UNAUTHORIZED);
         }
 
-        $this->idea->votes()->detach();
-
-        $this->idea->comments()->delete();
-
         $this->idea->delete();
 
         session()->flash('message', 'Idea was deleted successfully.!');

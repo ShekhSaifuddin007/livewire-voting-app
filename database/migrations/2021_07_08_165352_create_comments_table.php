@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Idea::class)->constrained();
+            $table->foreignIdFor(Idea::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Status::class)->constrained();
             $table->text('body');
             $table->integer('spam_reports')->default(0);

@@ -26,7 +26,7 @@ class IdeasIndex extends Component
         'status',
         'category',
         'other',
-        'search'
+        'search' => ['except' => ''],
     ];
 
     protected $listeners = [
