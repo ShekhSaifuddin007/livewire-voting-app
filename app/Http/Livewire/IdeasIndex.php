@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Vote;
 use App\Models\Status;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;

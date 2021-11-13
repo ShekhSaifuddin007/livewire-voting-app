@@ -26,15 +26,15 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased bg-gray-100 text-gray-900 text-sm">
-        <header class="flex flex-col md:flex-row items-center justify-between px-8 py-4">
+        <header class="flex items-center justify-between px-8 py-4">
             <a href="{{ route('/') }}" class="flex items-center">
-                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="w-12">
-                <span class="text-3xl font-semibold ml-3 text-teal-600 font-lobster">VotingApp</span>
+                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="w-8 md:w-12">
+                <span class="text-xl md:text-3xl font-semibold ml-3 text-teal-600 font-lobster">VotingApp</span>
             </a>
 
             <div class="flex items-center mt-2 md:mt-0">
                 @if (Route::has('login'))
-                    <div class="px-6 py-4">
+                    <div class="hidden md:block px-6 py-4">
                         @auth
                             <div class="flex items-center space-x-4">
                                 <form method="POST" action="{{ route('logout') }}">
@@ -59,32 +59,27 @@
                     </div>
                 @endif
 
-                <a href="#">
+                <a href="#" class="flex items-center">
                     @auth
                         <img src="{{ auth()->user()->photoUrl() }}" alt="avatar" class="w-10 h-10 rounded-full">
                     @else
                         <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar" class="w-10 h-10 rounded-full">
                     @endauth
+
+                    <span class="block md:hidden ml-3 cursor-pointer">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.75 5.75H19.25"/>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18.25H19.25"/>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.75 12H19.25"/>
+                        </svg>
+                    </span>
                 </a>
             </div>
         </header>
 
         <main class="container mx-auto flex flex-col md:flex-row px-3 md:px-0">
             <div class="w-full md:w-2/6 mr-0 md:mr-5">
-                <div class="bg-white md:sticky md:top-8 border-2 rounded-xl mt-8 md:mt-16 custom-gradient">
-                    <div class="text-center px-6 py-2 pt-6">
-                        <h3 class="font-semibold text-base">Add an idea</h3>
-                        <p class="text-xs mt-4">
-                            @auth
-                                Let us know what you would like and we'll take a look over!
-                            @else
-                                Please login to create an idea
-                            @endauth
-                        </p>
-                    </div>
-
-                    <livewire:create-idea />
-                </div>
+                <livewire:create-idea />
             </div>
 
             <div class="w-full md:w-4/6">
