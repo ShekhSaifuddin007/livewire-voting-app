@@ -26,7 +26,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased bg-gray-100 text-gray-900 text-sm">
-        <header class="flex items-center justify-between px-8 py-4">
+        <header class="flex items-center justify-between md:px-8 px-4 py-4">
             <a href="{{ route('/') }}" class="flex items-center">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" class="w-8 md:w-12">
                 <span class="text-xl md:text-3xl font-semibold ml-3 text-teal-600 font-lobster">VotingApp</span>
@@ -59,21 +59,55 @@
                     </div>
                 @endif
 
-                <a href="#" class="flex items-center">
+                <div class="flex items-center">
                     @auth
+                        <div class="block md:hidden mt-3 mr-3">
+                            <livewire:comment-notifications />
+                        </div>
+
                         <img src="{{ auth()->user()->photoUrl() }}" alt="avatar" class="w-10 h-10 rounded-full">
                     @else
                         <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar" class="w-10 h-10 rounded-full">
                     @endauth
 
-                    <span class="block md:hidden ml-3 cursor-pointer">
-                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
+                    <div
+                        x-data="{ isOpen: false }"
+                        class="mobile-menu block md:hidden ml-3 cursor-pointer relative">
+
+                        <svg @click.prevent="isOpen = ! isOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.75 5.75H19.25"/>
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18.25H19.25"/>
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6.75 12H19.25"/>
                         </svg>
-                    </span>
-                </a>
+
+                        <div
+                            x-show.transition.opacity="isOpen"
+                            x-cloak
+                            class="absolute bg-white h-auto right-0 rounded-md shadow-md top-10 w-28 z-20">
+                            @auth
+                                <div class="flex items-center space-x-4 py-3">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <a href="{{ route('logout') }}" class="px-4"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                            {{ __('Log out') }}
+                                        </a>
+                                    </form>
+                                </div>
+                            @else
+                                <div class="flex flex-col space-y-2 py-3">
+                                    <a href="{{ route('login') }}" class="font-semibold px-4 text-gray-700">Log in</a>
+
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="font-semibold px-4 text-gray-700">Register</a>
+                                    @endif
+                                </div>
+                            @endauth
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
