@@ -114,6 +114,8 @@
         <main class="container mx-auto flex flex-col md:flex-row px-3 md:px-0">
             <div class="w-full md:w-2/6 mr-0 md:mr-5">
                 <livewire:create-idea />
+
+                <livewire:mobile-create-idea />
             </div>
 
             <div class="w-full md:w-4/6">
