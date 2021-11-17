@@ -83,6 +83,7 @@
                         <div
                             x-show.transition.opacity="isOpen"
                             x-cloak
+                            @click.away="isOpen = false"
                             class="absolute bg-white h-auto right-0 rounded-md shadow-md top-10 w-28 z-20">
                             @auth
                                 <div class="flex items-center space-x-4 py-3">
