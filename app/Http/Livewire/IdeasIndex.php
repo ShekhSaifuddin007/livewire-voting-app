@@ -69,29 +69,7 @@ class IdeasIndex extends Component
         $categories = Category::all();
 
         $ideas = Idea::with(['user', 'category', 'status'])
-            ->when($this->status && $this->status !== 'all', function ($query) use ($statuses) {
-                return $query->where('status_id', $statuses->get($this->status));
-            })
-            ->when($this->category && $this->category !== 'all', function ($query) use ($categories) {
-                return $query->where('category_id', $categories->pluck('id', 'name')->get($this->category));
-            })
-            ->when($this->other && $this->other === 'top-voted', function ($query) {
-                return $query->orderByDesc('votes_count');
-            })
-            ->when($this->other && $this->other === 'my-ideas', function ($query) {
-                return $query->where('user_id', auth()->id());
-            })
-            ->when($this->other && $this->other === 'spam-ideas', function ($query) {
-                return $query->where('spam_reports', '>', 0)->orderByDesc('spam_reports');
-            })
-            ->when($this->other && $this->other === 'spam-comments', function ($query) {
-                return $query->whereHas('comments', function ($query) {
-                    return $query->where('spam_reports', '>', 0)->orderByDesc('spam_reports');
-                });
-            })
-            ->when(strlen($this->search) >= 3, function ($query) {
-                return $query->where('title', 'like', "%{$this->search}%");
-            })
+            ->filter($this, $statuses, $categories)
             ->addSelect(['is_voted_by_user' => Vote::query()->select('id')
                 ->where('user_id', auth()->id())
                 ->whereColumn('idea_id', 'ideas.id')

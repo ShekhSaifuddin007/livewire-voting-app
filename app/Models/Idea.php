@@ -85,6 +85,33 @@ class Idea extends Model
         ];
     }
 
+    public function scopeFilter($query, $self, $statuses, $categories)
+    {
+        return $query->when($self->status && $self->status !== 'all', function ($query) use ($statuses, $self) {
+            return $query->where('status_id', $statuses->get($self->status));
+        })
+        ->when($self->category && $self->category !== 'all', function ($query) use ($categories, $self) {
+            return $query->where('category_id', $categories->pluck('id', 'name')->get($self->category));
+        })
+        ->when($self->other && $self->other === 'top-voted', function ($query) {
+            return $query->orderByDesc('votes_count');
+        })
+        ->when($self->other && $self->other === 'my-ideas', function ($query) {
+            return $query->where('user_id', auth()->id());
+        })
+        ->when($self->other && $self->other === 'spam-ideas', function ($query) {
+            return $query->where('spam_reports', '>', 0)->orderByDesc('spam_reports');
+        })
+        ->when($self->other && $self->other === 'spam-comments', function ($query) {
+            return $query->whereHas('comments', function ($query) {
+                return $query->where('spam_reports', '>', 0)->orderByDesc('spam_reports');
+            });
+        })
+        ->when(strlen($self->search) >= 3, function ($query) use ($self) {
+            return $query->where('title', 'like', "%{$self->search}%");
+        });
+    }
+
     protected static function booted()
     {
         if (! app()->runningInConsole()) {
