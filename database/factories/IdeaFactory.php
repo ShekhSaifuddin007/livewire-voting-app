@@ -29,7 +29,7 @@ class IdeaFactory extends Factory
             'status_id' => rand(1, 5),
             'title' => $title = ucwords($this->faker->words(4, true)),
             'slug' => Str::slug($title),
-            'description' => $this->faker->paragraph(5)
+            'description' => $this->faker->paragraph(5),
         ];
     }
 }

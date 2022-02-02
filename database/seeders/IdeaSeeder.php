@@ -16,7 +16,7 @@ class IdeaSeeder extends Seeder
      */
     public function run()
     {
-        Idea::factory(100)->create();
+        Idea::factory(1000)->create();
 
         foreach (range(1, 20) as $user) {
             foreach (range(1, 100) as $idea) {

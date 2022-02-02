@@ -78,6 +78,8 @@ class IdeasIndex extends Component
             ->withCount('comments')
             ->latest('id')->paginate();
 
+        // dd($ideas);
+
         return view('livewire.ideas-index', compact('ideas', 'categories'));
     }
 
